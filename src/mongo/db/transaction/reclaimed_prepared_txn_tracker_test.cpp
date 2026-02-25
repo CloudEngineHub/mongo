@@ -72,7 +72,7 @@ DEATH_TEST_F(ReclaimedPreparedTxnTrackerDeathTest,
 
 DEATH_TEST_F(ReclaimedPreparedTxnTrackerDeathTest,
              TrackPrepareExitInvariantsIfDiscoveryAlreadyComplete,
-             "Attempting to track reclaimed prepared txn before discovery has completed") {
+             "Attempting to track reclaimed prepared txn after discovery has completed") {
     auto* tracker = ReclaimedPreparedTxnTracker::get(getServiceContext());
     SharedPromise<void> promise;
     tracker->beginDiscovery(0);

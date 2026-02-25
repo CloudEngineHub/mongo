@@ -61,7 +61,7 @@ void ReclaimedPreparedTxnTracker::trackPrepareExit(SharedSemiFuture<void> onExit
     invariant(_discoveryStarted,
               "Attempting to track reclaimed prepared txn before discovery has started");
     invariant(!_discoveryComplete,
-              "Attempting to track reclaimed prepared txn before discovery has completed");
+              "Attempting to track reclaimed prepared txn after discovery has completed");
     // Safe to inline because the continuation only decrements an atomic counter and emplaces a
     // one-time completion promise. So running it on the resolving thread should not deadlock.
     onExitPrepareFuture.unsafeToInlineFuture().getAsync([state = _state](Status s) {
