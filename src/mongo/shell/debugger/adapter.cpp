@@ -71,7 +71,7 @@ Request Request::fromJSON(std::string line) {
     Request msg;
     msg.seq = obj.getIntField("seq");
     msg.command = std::string(toStdStringViewForInterop(obj.getStringField("command")));
-    msg.arguments = obj.getObjectField("arguments");
+    msg.arguments = obj.getObjectField("arguments").getOwned();
 
     return msg;
 }
